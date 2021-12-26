@@ -4,12 +4,14 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import Card from "../Cards/card";
 import Header from "../Header/Header";
+import PeopleNumber from "../PeopleNumber/PeopleNumber";
 
 function App() {
   return (
     <div className="App">
-      <header className="shadow bg-dark">
+      <header className="d-flex justify-content-between shadow bg-dark">
         <Header />
+        <PeopleNumber value={3} />
       </header>
       <div className="container-fluid py-5">
         <div className="row d-flex justify-content-center">
