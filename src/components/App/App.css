@@ -1,7 +1,7 @@
 body{
   background-color: rgb(26, 163, 99);
 }
-img { 
+.photo { 
   width: 100px;
   height: 100px;
   padding: 10px;
@@ -17,3 +17,4 @@ h1{
 .col-md-4 {
   border-radius: 10px !important;
 }
+
