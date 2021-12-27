@@ -5,13 +5,18 @@ import "./App.css";
 import Card from "../Cards/card";
 import Header from "../Header/Header";
 import PeopleNumber from "../PeopleNumber/PeopleNumber";
+import { useState } from "react";
 
 function App() {
+  const [count, setCount] = useState(3);
+  let addValue = () => {
+    setCount(count + 1);
+  };
   return (
     <div className="App">
       <header className="d-flex justify-content-between shadow bg-dark">
         <Header />
-        <PeopleNumber value={3} />
+        <PeopleNumber action={addValue} value={count} />
       </header>
       <div className="container-fluid py-5">
         <div className="row d-flex justify-content-center">
