@@ -8,7 +8,7 @@ function PeopleNumber(props) {
       <h4 className="text-white">There are {value} popular people on screen</h4>
       <button
         onClick={action}
-        className="ms-3 rounded bg-success text-light p-2"
+        className="ms-3 rounded bg-success text-light p-2 border-dark width-5"
       >
         Add person
       </button>

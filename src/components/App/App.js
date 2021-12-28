@@ -6,6 +6,13 @@ import Card from "../Cards/card";
 import Header from "../Header/Header";
 import PeopleNumber from "../PeopleNumber/PeopleNumber";
 import { useState } from "react";
+import Todo from "../Todo";
+
+const todos = [
+  { title: "task 1", id: 1 },
+  { title: "task 2", id: 2 },
+  { title: "task 3", id: 3 },
+];
 
 function App() {
   const [count, setCount] = useState(3);
@@ -43,6 +50,7 @@ function App() {
           </div>
         </div>
       </div>
+      <Todo todo={todos} />
     </div>
   );
 }
