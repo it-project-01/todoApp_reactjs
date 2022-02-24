@@ -1,0 +1,43 @@
+.input::placeholder {
+    color: rgb(243, 235, 235) !important;
+    opacity: 1;
+    }
+
+.col-lg-6{
+  margin: 200px auto;
+}
+.bigInput {
+ background-color: rgb(42, 104, 238);
+ padding: 8px; 
+ border-radius: 6px;
+}
+.circleButton {
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+    border-radius: 50% !important;
+    width: 40px; 
+    height: 40px; 
+    outline: none; 
+    border: 1px solid white; 
+    box-shadow: none !important;
+}
+.list-group-item {
+    background-color: rgb(42, 104, 238);
+    color: white
+}
+
+.completed .text {
+    text-decoration: line-through; 
+    color: rgb(45, 245, 45);
+}
+.completed .checked {
+   display: block !important;
+   color: rgb(45, 245, 45);
+}
+body.light {
+    background-color: white;
+}
+body.dark {
+    background-color: blueviolet;
+}

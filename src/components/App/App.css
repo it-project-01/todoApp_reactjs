@@ -1,20 +1,8 @@
 body{
-  background-color: rgb(26, 163, 99);
+  background-image: url(../images/day-mode.jpg);
+  background-repeat: no-repeat;
+  background-size: 100% 400px;
+  position: relative;
 }
-.photo { 
-  width: 100px;
-  height: 100px;
-  padding: 10px;
-  margin: 0 auto;
-  border-radius: 50% !important; 
-  box-shadow: 0 10px 20px rgba(0,0,0,.2);
-}
-h1{
-  font-size: 100px;
-  font-family: sans-serif;
-  margin-bottom: 20px;
-}
-.col-md-4 {
-  border-radius: 10px !important;
-}
+
 

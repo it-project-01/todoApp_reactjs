@@ -1,84 +1,152 @@
-import "./Todo.css";
 import React, { Component } from "react";
+import { FaCheck, FaPencilAlt, FaPlus, FaSun, FaTrash } from "react-icons/fa";
 import {
-  InputGroup,
-  Input,
   Button,
+  Container,
+  Input,
+  Label,
   ListGroup,
   ListGroupItem,
 } from "reactstrap";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import "./Todo.css";
 
 export default class Todo extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      todos: props.todo,
+      tasks: props.tasks,
       typing: "",
     };
   }
+
   typing = (event) => {
     this.setState((state) => {
       return { typing: event.target.value };
     });
   };
+
   add = () => {
     this.setState((state) => {
-      let todos = [...state.todos];
-      todos.push({ title: state.typing });
+      let tasks = [...state.tasks];
+      if (state.typing != "") {
+        tasks.push({
+          text: state.typing,
+          completed: false,
+        });
+      }
       return {
-        todos: todos,
+        tasks: tasks,
         typing: "",
       };
     });
   };
+  complete = (index) => {
+    if (this.state.tasks[index].completed) {
+      this.setState((state) => {
+        let newTasks = [...state.tasks];
+        newTasks[index].completed = false;
+        return { tasks: newTasks };
+      });
+    } else if (this.state.tasks[index].completed === false) {
+      this.setState((state) => {
+        let newTasks = [...state.tasks];
+        newTasks[index].completed = true;
+        return { tasks: newTasks };
+      });
+    }
+  };
+  delete = (index) => {
+    this.setState((state) => {
+      let tasks = [...state.tasks];
+      tasks.splice(index, 1);
+      return {
+        tasks: tasks,
+      };
+    });
+  };
+
+  onKeySubmit = (event) => {
+    if (event.charCode === 13 || event.key === "Enter") {
+      return this.add();
+    }
+  };
+  mode = (event) => {
+    const body = document.getElementsByTagName("body")[0];
+    if (this.state.mode == "light") {
+      body.classList.add("light");
+      this.setState((state) => {
+        return { mode: "dark" };
+      });
+    } else if (this.state.mode == "dark") {
+      body.classList.remove("light");
+      this.setState((state) => {
+        return { mode: "light" };
+      });
+    }
+  };
   render() {
+    const { typing } = this.state;
     return (
-      <div className="container py-5">
-        <div className="row justify-content-center">
-          <div className="col-sm-10 col-md-8 col-lg-6">
-            <div className="todoContainer rounded bg-white p-3">
-              <div>
-                <InputGroup>
-                  <Input
-                    className="bg-secondary text-light border-secondary shadow"
-                    value={this.state.typing}
-                    onChange={this.typing}
-                  />
-                  <Button
-                    className="d-flex align-items-center bg-dark border-dark shadow"
-                    onClick={this.add}
+      <Container>
+        <div className="col-10 col-lg-6">
+          <div className="d-flex align-items-center justify-content-between">
+            <h1 className="text-white">Todo</h1>
+            <Button
+              className="bg-transparent border-white d-flex align-items=center"
+              id="mode"
+              onClick={this.mode}
+            >
+              <FaSun className="fs-5" />
+            </Button>
+          </div>
+          <div className="d-flex mt-3 bigInput">
+            <Button className="circleButton bg-transparent me-2">
+              <FaPlus className="fs-5 text-white" onClick={this.add} />
+            </Button>
+            <Input
+              className="input bg-transparent border-none text-white"
+              value={this.state.typing}
+              onChange={this.typing}
+              onKeyPress={this.onKeySubmit}
+              placeholder="task..."
+            />
+          </div>
+          <div className="mt-4">
+            <ListGroup>
+              {this.state.tasks.map((value, index) => {
+                return (
+                  <ListGroupItem
+                    className={`d-flex align-items-center justify-content-between
+                    ${(value.completed && "completed") || ""}`}
+                    key={index}
                   >
-                    <FontAwesomeIcon
-                      icon={faPlus}
-                      className="mx-2"
-                    ></FontAwesomeIcon>
-                    Add
-                  </Button>
-                </InputGroup>
-              </div>
-              <div className="my-2 shadow">
-                <ListGroup>
-                  {this.state.todos.map((value, id) => {
-                    return (
-                      <ListGroupItem
-                        className="bg-secondary text-white"
-                        action
-                        href="#"
-                        tag="a"
-                        key={id}
+                    <Label className="d-flex align-items-center justify-content-center">
+                      <Button
+                        className="circleButton bg-transparent me-2"
+                        onClick={() => this.complete(index)}
                       >
-                        {value.title}
-                      </ListGroupItem>
-                    );
-                  })}
-                </ListGroup>
-              </div>
-            </div>
+                        <FaCheck className="fs-5 d-none checked" />
+                      </Button>
+                      <p className="mt-2 text">{value.text}</p>
+                    </Label>
+                    <div className="d-flex align-items-center justify-content-center">
+                      <Button className="circleButton bg-transparent me-2 justify-content-end">
+                        <FaTrash
+                          className="fs-5 text-white"
+                          onClick={() => this.delete(index)}
+                        />
+                      </Button>
+                      <Button className="circleButton bg-transparent me-2 justify-content-end">
+                        <FaPencilAlt className="fs-5 text-white" />
+                      </Button>
+                    </div>
+                  </ListGroupItem>
+                );
+              })}
+            </ListGroup>
           </div>
         </div>
-      </div>
+      </Container>
     );
   }
 }
