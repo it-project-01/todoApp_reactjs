@@ -70,19 +70,9 @@ export default class Todo extends Component {
       return this.add();
     }
   };
-  mode = (event) => {
-    const body = document.getElementsByTagName("body")[0];
-    if (this.state.mode == "light") {
-      body.classList.add("light");
-      this.setState((state) => {
-        return { mode: "dark" };
-      });
-    } else if (this.state.mode == "dark") {
-      body.classList.remove("light");
-      this.setState((state) => {
-        return { mode: "light" };
-      });
-    }
+  mode = () => {
+    let body = document.getElementsByTagName("body")[0];
+    return body.classList.toggle("dark-mode");
   };
   render() {
     const { typing } = this.state;

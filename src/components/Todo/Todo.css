@@ -35,9 +35,18 @@
    display: block !important;
    color: rgb(45, 245, 45);
 }
-body.light {
-    background-color: white;
+body {
+    background-color: white !important;
 }
-body.dark {
-    background-color: blueviolet;
+.dark-mode {
+    background-color: rgb(7, 2, 58) !important;
+}
+body.dark-mode {
+    background-image: url(../images/night-mode.jpg) !important;
+    background-repeat: no-repeat;
+    background-size: 100% 400px;
+    position: relative;
+}
+.dark-mode .bigInput, .dark-mode .list-group-item {
+    background-color: rgb(25, 20, 75) !important;
 }
